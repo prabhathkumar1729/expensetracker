@@ -1,0 +1,177 @@
+﻿@page "/cat"
+@using BlazorWalletTrackerFE.Store.CategoryStore;
+@inject ISnackbar Snackbar
+@inject IDispatcher Dispatcher
+@inject IState<CategoryState> CategoryStorage;
+@inject IDialogService DialogService
+@using BlazorWalletTrackerFE.Store.UserStore;
+@inject IState<UserState> UserStorage;
+@*
+<MudPaper Width="550px">
+    <MudTable Items="CategoryStorage.Value.CategoryList"
+              Dense=true
+              Hover=true
+              Bordered=true
+              ReadOnly=false
+              CanCancelEdit=true
+              Filter="new Func<string,bool>(FilterFunc)"
+              SortLabel="Sort By"
+              CommitEditTooltip="Save the changes"
+              OnCommitEditClick="@(() => Snackbar.Add("Commit Edit Handler Invoked"))"
+              RowEditPreview="BackupItem"
+              RowEditCancel="ResetItemToOriginalValues"
+              FixedHeader=true
+              FixedFooter=true
+              RowEditCommit="EditCategory"
+              IsEditRowSwitchingBlocked=true
+              ApplyButtonPosition="TableApplyButtonPosition.End"
+              EditButtonPosition="TableEditButtonPosition.End"
+              EditTrigger="TableEditTrigger.EditButton"
+              Striped=true>
+        <ToolBarContent>
+            <MudText Typo="Typo.h6">Categories</MudText>
+            <MudSpacer />
+            <MudButton Color="Color.Inherit" Variant="Variant.Filled">Add Category</MudButton>
+            <MudSpacer />
+            <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh>
+                <MudTableSortLabel SortBy="new Func<string, object>(x=>x)"> Category</MudTableSortLabel>
+            </MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd>
+                @context
+            </MudTd>
+            <MudTd>
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Size="Size.Small" OnClick="@(()=>DeleteCategory(context))" />
+            </MudTd>
+        </RowTemplate>
+        <RowEditingTemplate>
+            <MudTd>
+                <MudTextField @bind-Value="@context" Required="true" />
+            </MudTd>
+            <MudTd>
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Size="Size.Small" OnClick="@(() => DeleteCategory(context))" />
+            </MudTd>
+        </RowEditingTemplate>
+
+        <PagerContent>
+            <MudTablePager />
+        </PagerContent>
+        
+    </MudTable>
+</MudPaper>
+*@
+
+<MudPaper Height="100px" Width="80%">
+    <MudTable Items="CategoryStorage.Value.CategoryList"
+              Dense=true
+              Hover=true
+              Bordered=true
+              ReadOnly=false
+              CanCancelEdit=true
+              Filter="new Func<string, bool>(FilterFunc)"
+              SortLabel="Sort By"
+              CommitEditTooltip="Save the changes"
+              OnCommitEditClick="@(() => Snackbar.Add("Commit Edit Handler Invoked"))"
+              RowEditPreview="BackupItem"
+              RowEditCancel="ResetItemToOriginalValues"
+              FixedHeader=true
+              FixedFooter=true
+              RowEditCommit="ItemHasBeenCommitted"
+              IsEditRowSwitchingBlocked=true
+              ApplyButtonPosition="TableApplyButtonPosition.End"
+              EditButtonPosition="TableEditButtonPosition.End"
+              EditTrigger="TableEditTrigger.EditButton"
+              Striped=true
+              @ref="_table"
+              T="string">
+        <ToolBarContent>
+            <MudText Typo="Typo.h6">Categories</MudText>
+            <MudSpacer />
+            <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh>
+                <MudTableSortLabel SortBy="new Func<string, object>(x => x)">
+                    Category
+                </MudTableSortLabel>
+            </MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd>
+                @context
+            </MudTd>
+            <MudTd>
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Size="Size.Small" OnClick="@(()=>DeleteCategory(context))" />
+            </MudTd>
+        </RowTemplate>
+        <RowEditingTemplate>
+            <MudTd>
+                <MudTextField @bind-Value="@context" Required=true />
+            </MudTd>
+            <MudTd>
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Size="Size.Small" OnClick="@(()=>DeleteCategory(context))" />
+            </MudTd>
+        </RowEditingTemplate>
+        <PagerContent>
+            <MudTablePager />
+        </PagerContent>
+        <EditButtonContent Context="button">
+            <MudIconButton Size="@Size.Small" Icon="@Icons.Material.Outlined.Edit" Class="pa-0" OnClick="@button.ButtonAction" Disabled="@button.ButtonDisabled" />
+        </EditButtonContent>
+    </MudTable>
+</MudPaper>
+
+
+@code {
+    private string categoryBeforeEdit;
+    private string searchString = "";
+    private MudTable<string> _table;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("hello mowa");
+    }
+    private void BackupItem(object item)
+    {
+        categoryBeforeEdit = (string)item;
+    }
+    private void ResetItemToOriginalValues(object item)
+    {
+        item = categoryBeforeEdit;
+    }
+    private bool FilterFunc(string item)
+    {
+        if (string.IsNullOrWhiteSpace(searchString)) return true;
+        if (item?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true) return true;
+        return false;
+    }
+
+    private async Task DeleteCategory(string category)
+    {
+        await JS.InvokeVoidAsync("console.log", " I RECEIVED THIS CATEGORY    ", category);
+
+        var parameters = new DialogParameters();
+        parameters.Add("UserId", UserStorage.Value.User.Id);
+        parameters.Add("Category", category);
+        DialogService.Show<CategoryDeleteDialog>("Delete Category", parameters);
+    }
+
+    private async void ItemHasBeenCommitted(object category)
+    {
+        //var parameters = new DialogParameters();
+        //parameters.Add("ContentText", "Do you really want to update this category. This process cannot be undone.");
+        //parameters.Add("ButtonText", "Confirm");
+        //parameters.Add("Color", Color.Warning);
+        //var dialog = DialogService.Show<ConfirmDialog>("Edit Category", parameters);
+        //var result = await dialog.Result;
+        //if (!result.Cancelled)
+        //{
+        //Dispatcher.Dispatch(new UpdateCategoryAction { UserId = UserStorage.Value.User.Id, newCategory = (string)category, oldCategory = categoryBeforeEdit });
+        Snackbar.Add($"Category updated.   {(string)category}", MudBlazor.Severity.Success);
+        //}
+    }
+}

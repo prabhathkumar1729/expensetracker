@@ -1,0 +1,130 @@
+﻿@*<h3>Hello</h3>
+
+@code {
+    [Parameter]
+    public List<string> Categories { get; set; }
+    [Parameter]
+    public List<Transaction> transactions { get; set; }
+
+    //we are creating data visualisation using radzen stacked column chart where we are distributing the data across different months of the year for different categories in stacked manner. The necessary data is available in the transactions list and the categories list.We need to create a list of objects of type StackedBarGraphDataModel and assign it to the Data property of the RadzenStackedColumnSeries component. The StackedBarGraphDataModel class has the following properties:
+//Category: The category name
+//Month: The month name
+//Amount: The total amount for the category in the month
+
+
+
+}
+*@
+@using System.Globalization
+@using Radzen
+@using Radzen.Blazor
+@using Radzen.Blazor.Rendering
+@using BlazorWalletTrackerFE.Store.TransactionStore;
+@using BlazorWalletTrackerFE.Store.CategoryStore;
+@using BlazorWalletTrackerFE.Shared.Models;
+@inject IDispatcher Dispatcher
+@inject IState<TransactionState> TransactionStorage;
+@*<RadzenChart>
+    <RadzenValueAxis Min="0">
+        <RadzenGridLines Visible="true" />
+        <RadzenAxisTitle Text="Revenue in USD" />
+    </RadzenValueAxis>
+    @foreach (var category in Categories)
+    {
+        <RadzenStackedColumnSeries Data="@GetCategoryData(category)" Title="@category" CategoryProperty="Month" LineType="LineType.Dashed" ValueProperty="TotalSpending" />
+        <RadzenSeriesDataLabels Visible="true" />
+    }
+    <RadzenColumnOptions Radius="5" />
+</RadzenChart>
+*@
+@*@foreach (var category in Categories)
+{
+    Console.WriteLine(GetCategoryData(category));
+    Console.WriteLine("Hello world from stack");
+}*@
+
+
+<RadzenChart>
+    <RadzenStackedColumnSeries Data="@dataItems" CategoryProperty="Month" Title="2020" LineType="LineType.Dashed" ValueProperty="TotalSpendingsInTheMonth">
+        <RadzenSeriesDataLabels Visible="@showDataLabels" />
+    </RadzenStackedColumnSeries>
+
+    <RadzenColumnOptions Radius="5" />
+    <RadzenValueAxis Formatter="@FormatAsUSD" Min="0" Max="10000" Step="1000">
+        <RadzenGridLines Visible="true" />
+        <RadzenAxisTitle Text="Revenue in USD" />
+    </RadzenValueAxis>
+</RadzenChart>
+
+
+
+@code {
+    private List<Transaction> transactions;// Your list of transactions
+
+    private List<string> Categories; // List of distinct categories
+
+    private List<string> Months; // List of months
+
+    protected override void OnInitialized()
+    {
+        transactions = TransactionStorage.Value.Transactions;
+        // Populate the Categories list with distinct categories from transactions
+        Categories = transactions.Select(t => t.Category).Distinct().ToList();
+
+        // Populate the Months list with the months in a year
+        Months = Enumerable.Range(1, 12).Select(month => new DateTime(DateTime.Now.Year, month, 1).ToString("MMMM")).ToList();
+    }
+
+    private List<TransactionGroup> GetCategoryData(string category)
+    {
+        // Group transactions by month and category, and calculate the total spending for each month
+        var categoryData = transactions
+            .Where(t => t.Category == category)
+            .GroupBy(t => new { t.TransactionDate.Value.Month, t.Category })
+            .Select(g => new TransactionGroup
+                {
+                    Month = new DateTime(DateTime.Now.Year, g.Key.Month, 1).ToString("MMMM"),
+                    Category = g.Key.Category,
+                    TotalSpending = g.Sum(t => t.Amount)
+                })
+            .ToList();
+
+        // Fill missing months with zero spending
+        var missingMonths = Months.Except(categoryData.Select(cd => cd.Month));
+        foreach (var month in missingMonths)
+        {
+            categoryData.Add(new TransactionGroup
+                {
+                    Month = month,
+                    Category = category,
+                    TotalSpending = 0
+                });
+        }
+
+        // Order the data by month
+        categoryData = categoryData.OrderBy(cd => Months.IndexOf(cd.Month)).ToList();
+        Console.WriteLine("Hello from the stackgraph    ", categoryData.Where(t => t.Category == "Food"));
+        return categoryData;
+    }
+
+    public class TransactionGroup
+    {
+        public string Month { get; set; }
+        public string Category { get; set; }
+        public decimal TotalSpending { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Month} - {Category} - {TotalSpending}";
+        }
+    }
+
+    [Parameter]
+    public DataItem[]? dataItems { get; set; }
+    bool showDataLabels = true;
+
+    string FormatAsUSD(object value)
+    {
+        return ((double)value).ToString("C0", CultureInfo.CreateSpecificCulture("en-US"));
+    }
+}

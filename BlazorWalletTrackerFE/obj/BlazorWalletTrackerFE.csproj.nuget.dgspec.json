@@ -1,0 +1,129 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\prabhath.rayabarapu\\Desktop\\VS_files\\BlazorWalletTrackerFE\\BlazorWalletTrackerFE.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\prabhath.rayabarapu\\Desktop\\VS_files\\BlazorWalletTrackerFE\\BlazorWalletTrackerFE.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\prabhath.rayabarapu\\Desktop\\VS_files\\BlazorWalletTrackerFE\\BlazorWalletTrackerFE.csproj",
+        "projectName": "BlazorWalletTrackerFE",
+        "projectPath": "C:\\Users\\prabhath.rayabarapu\\Desktop\\VS_files\\BlazorWalletTrackerFE\\BlazorWalletTrackerFE.csproj",
+        "packagesPath": "C:\\Users\\prabhath.rayabarapu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\prabhath.rayabarapu\\Desktop\\VS_files\\BlazorWalletTrackerFE\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\prabhath.rayabarapu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[11.5.2, )"
+            },
+            "Fluxor": {
+              "target": "Package",
+              "version": "[5.7.0, )"
+            },
+            "Fluxor.Blazor.Web": {
+              "target": "Package",
+              "version": "[5.7.0, )"
+            },
+            "Fluxor.Blazor.Web.ReduxDevTools": {
+              "target": "Package",
+              "version": "[5.7.0, )"
+            },
+            "Microsoft.AspNetCore.Components.Authorization": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.Authentication": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "MudBlazor": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "Radzen.Blazor": {
+              "target": "Package",
+              "version": "[4.11.1, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.30.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[7.0.4, 7.0.4]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "browser-wasm": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

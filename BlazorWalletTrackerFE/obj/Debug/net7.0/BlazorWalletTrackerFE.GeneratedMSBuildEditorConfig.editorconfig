@@ -1,0 +1,161 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = BlazorWalletTrackerFE
+build_property.RootNamespace = BlazorWalletTrackerFE
+build_property.ProjectDir = C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerFE\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerFE
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/AddCategoryDialogComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkQ2F0ZWdvcnlEaWFsb2dDb21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/AddTransactionComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkVHJhbnNhY3Rpb25Db21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/CategoriesTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcmllc1RhYmxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/CategoryDeleteDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlEZWxldGVEaWFsb2cucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/CategoryVsTotalNoTransactionsDonutChartComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlWc1RvdGFsTm9UcmFuc2FjdGlvbnNEb251dENoYXJ0Q29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/CategoryVsTotalSpendsPieChartComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0ZWdvcnlWc1RvdGFsU3BlbmRzUGllQ2hhcnRDb21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/ChangePasswordDialogComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhbmdlUGFzc3dvcmREaWFsb2dDb21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/ConfirmDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uZmlybURpYWxvZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/EditCategoryDialogComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdENhdGVnb3J5RGlhbG9nQ29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/FetchData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/ForgotPasswordDialogComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRm9yZ290UGFzc3dvcmREaWFsb2dDb21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/LoginDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5EaWFsb2cucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/NewCategoriesComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTmV3Q2F0ZWdvcmllc0NvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/ProfileCardComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZUNhcmRDb21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/ProfilePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmlsZVBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/RegistrationConfirm.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cmF0aW9uQ29uZmlybS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/RegistrationDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cmF0aW9uRGlhbG9nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/SpendingsStackedColumnChartComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3BlbmRpbmdzU3RhY2tlZENvbHVtbkNoYXJ0Q29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/SpendingsTrendsComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3BlbmRpbmdzVHJlbmRzQ29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/StackedBarGraphDVComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3RhY2tlZEJhckdyYXBoRFZDb21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/Test.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/TransactionsStackedBarChartComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNhY3Rpb25zU3RhY2tlZEJhckNoYXJ0Q29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/TransactionsTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNhY3Rpb25zVGFibGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/TransactionsTrendsComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNhY3Rpb25zVHJlbmRzQ29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Shared/StateLoader.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN0YXRlTG9hZGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-f1jolmd3jo
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/Registration.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0cmF0aW9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-zxwixpyd1a
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Pages/UserDashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlckRhc2hib2FyZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ijgb2hcpb3
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-0flydbwfoq
+
+[C:/Users/prabhath.rayabarapu/Desktop/VS_files/BlazorWalletTrackerFE/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-6dze51kaw5

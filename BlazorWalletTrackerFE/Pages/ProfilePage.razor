@@ -1,0 +1,54 @@
+﻿@page "/profile"
+@using BlazorWalletTrackerFE.Store.UserStore;
+@using BlazorWalletTrackerFE.Store.TransactionStore;
+@using BlazorWalletTrackerFE.Store.CategoryStore;
+@inject IState<UserState> UserStorage;
+@inject IState<TransactionState> TransactionStorage;
+@inject IState<CategoryState> CategoryStorage;
+@inject IDialogService DialogService
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider authenticationStateProvider
+@inject IDispatcher Dispatcher
+
+<MudGrid Style="height:50%">
+    <MudItem sm="6" Style="display:flex; justify-content:center; align-items:center;">
+        <MudPaper Height="400px" Width="100%" style="background-color: red">
+            <MudAvatar Style="margin:auto; height= 400px; width=400px;" Image="https://s.yimg.com/ny/api/res/1.2/kwUySU9SFW2HWD8YOnO1lQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM1Mg--/https://media.zenfs.com/en/investorplace_417/6547c6454ca0f10863600fc11f05832d" />
+        </MudPaper>
+    </MudItem>
+    <MudItem sm="6">
+        <MudPaper>
+            <MudText Align="Align.Center" Typo="Typo.h3" Color="Color.Primary">@UserStorage.Value.User.Name</MudText>
+            <MudText Align="Align.Center" Typo="Typo.h6">@UserStorage.Value.User.Email</MudText>
+        </MudPaper>
+    </MudItem>
+    <MudButton OnClick="ChangePassword" Color="Color.Primary">Change Password</MudButton>
+</MudGrid>
+
+@code {
+
+    async void ChangePassword()
+    {
+        var parameters = new DialogParameters();
+        parameters.Add("Email", UserStorage.Value.User.Email);
+        var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall };
+        var dialog = DialogService.Show<ChangePasswordDialogComponent>("Change Password", parameters, options);
+        var result = await dialog.Result;
+        if (!result.Cancelled)
+        {
+            var authenticationState = await authenticationStateProvider.GetAuthenticationStateAsync();
+            var user = authenticationState.User;
+            if (user.Identity.IsAuthenticated)
+            {
+                await JS.InvokeVoidAsync("localStorage.clear");
+                Dispatcher.Dispatch(new ClearTransactionsStateAction());
+                Dispatcher.Dispatch(new ClearCategoryStateAction());
+                Dispatcher.Dispatch(new LogOutAction());
+                (authenticationStateProvider as CustomAuthProvider).NotifyAuthState();
+
+                Navigation.NavigateToLogout("/");
+            }
+        }
+    }
+
+}

@@ -1,0 +1,33 @@
+﻿@using BlazorWalletTrackerFE.Shared.Models;
+@using System.Linq;
+<h3>SpendingsStackedColumnChartComponent</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <RadzenChart>
+                @foreach (string category in dataItems.Select(x => x.Category).Distinct())
+                {
+                    <RadzenStackedColumnSeries Data="@dataItems.Where(x => x.Category == category)" CategoryProperty="Month" Title="@category" ValueProperty="TotalSpendingsInTheMonth">
+                        <RadzenSeriesDataLabels Visible="true" />
+                    </RadzenStackedColumnSeries>
+                })
+                <RadzenColumnOptions Radius="5" />
+                <RadzenValueAxis Min="0">
+                    <RadzenGridLines Visible="true" />
+                    <RadzenAxisTitle Text="Spendings" />
+                </RadzenValueAxis>
+            </RadzenChart>
+        </div>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public DataItem[]? dataItems { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("I started Spendings Stacked Column Chart Component");
+        base.OnInitialized();
+        Console.WriteLine("I finished Spendings Stacked Column Chart Component");
+    }
+}

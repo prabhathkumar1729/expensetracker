@@ -1,0 +1,17 @@
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\bin\Debug\net7.0\BlazorWalletTrackerBL.deps.json
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\bin\Debug\net7.0\BlazorWalletTrackerBL.dll
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\bin\Debug\net7.0\BlazorWalletTrackerBL.pdb
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\bin\Debug\net7.0\BlazorWalletTrackerDAL.dll
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\bin\Debug\net7.0\BlazorWalletTrackerDAL.pdb
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\obj\Debug\net7.0\BlazorWalletTrackerBL.csproj.AssemblyReference.cache
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\obj\Debug\net7.0\BlazorWalletTrackerBL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\obj\Debug\net7.0\BlazorWalletTrackerBL.AssemblyInfoInputs.cache
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\obj\Debug\net7.0\BlazorWalletTrackerBL.AssemblyInfo.cs
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\obj\Debug\net7.0\BlazorWalletTrackerBL.csproj.CoreCompileInputs.cache
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\obj\Debug\net7.0\BlazorWalletTrackerBL.csproj.CopyComplete
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\obj\Debug\net7.0\BlazorWalletTrackerBL.dll
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\obj\Debug\net7.0\refint\BlazorWalletTrackerBL.dll
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\obj\Debug\net7.0\BlazorWalletTrackerBL.pdb
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\obj\Debug\net7.0\ref\BlazorWalletTrackerBL.dll
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\bin\Debug\net7.0\BlazorWalletTrackerBL.runtimeconfig.json
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerBL\obj\Debug\net7.0\BlazorWalletTrackerBL.genruntimeconfig.cache

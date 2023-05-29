@@ -1,0 +1,19 @@
+.left-half[b-ijgb2hcpb3] {
+        height: 100%;
+}
+
+ 
+
+.right-half[b-ijgb2hcpb3] {
+        height: 100vh;
+        overflow-y: auto;
+}
+
+  .userdashboard[b-ijgb2hcpb3]{
+    display:flex;
+    flex-direction:row;
+}
+
+.scrollable-content[b-ijgb2hcpb3] {
+        /*max-height: calc(100vh - 64px);*/ /* Subtract the height of the app bar if applicable */
+}

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "GSE0BbyxDI/kRoH+lXZdAkfqjpvcjix8AN8WqVRSSkc=",
+  "Source": "BlazorWalletTrackerBE",
+  "BasePath": "_content/BlazorWalletTrackerBE",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

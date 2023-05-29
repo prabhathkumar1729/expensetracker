@@ -1,0 +1,14 @@
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\bin\Debug\net7.0\BlazorWalletTrackerDAL.deps.json
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\bin\Debug\net7.0\BlazorWalletTrackerDAL.dll
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\bin\Debug\net7.0\BlazorWalletTrackerDAL.pdb
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\obj\Debug\net7.0\BlazorWalletTrackerDAL.csproj.AssemblyReference.cache
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\obj\Debug\net7.0\BlazorWalletTrackerDAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\obj\Debug\net7.0\BlazorWalletTrackerDAL.AssemblyInfoInputs.cache
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\obj\Debug\net7.0\BlazorWalletTrackerDAL.AssemblyInfo.cs
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\obj\Debug\net7.0\BlazorWalletTrackerDAL.csproj.CoreCompileInputs.cache
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\obj\Debug\net7.0\BlazorWalletTrackerDAL.dll
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\obj\Debug\net7.0\refint\BlazorWalletTrackerDAL.dll
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\obj\Debug\net7.0\BlazorWalletTrackerDAL.pdb
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\obj\Debug\net7.0\ref\BlazorWalletTrackerDAL.dll
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\bin\Debug\net7.0\BlazorWalletTrackerDAL.runtimeconfig.json
+C:\Users\prabhath.rayabarapu\Desktop\VS_files\BlazorWalletTrackerDAL\obj\Debug\net7.0\BlazorWalletTrackerDAL.genruntimeconfig.cache

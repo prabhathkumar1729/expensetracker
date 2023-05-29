@@ -1,0 +1,31 @@
+﻿@using BlazorWalletTrackerFE.Shared.Models;
+<h3>TransactionsStackedBarChartComponent</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <RadzenChart>
+                @foreach (string category in dataItems.Select(x => x.Category).Distinct())
+                {
+                    <RadzenStackedBarSeries Data="@dataItems.Where(x => x.Category == category)" CategoryProperty="Month" Title="@category" ValueProperty="TotalNumberOfTransactionsInTheMonth" />
+                    <RadzenSeriesDataLabels Visible="true" />
+                })
+                <RadzenColumnOptions Radius="5" />
+                <RadzenValueAxis Min="0">
+                    <RadzenGridLines Visible="true" />
+                    <RadzenAxisTitle Text="Transactions" />
+                </RadzenValueAxis>
+            </RadzenChart>
+        </div>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public DataItem[]? dataItems { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("I started Transactions Stacked Bar Chart Component");
+        base.OnInitialized();
+        Console.WriteLine("I finished Transactions Stacked Bar Chart Component");
+    }
+}

@@ -1,0 +1,13 @@
+﻿@using BlazorWalletTrackerFE.Store.UserStore;
+@inject IState<UserState> UserStorage;
+
+<MudCard Elevation="5">
+    <MudBadge Color="Color.Success" Overlap="true" Bordered="true">
+        <MudAvatar Image="https://s.yimg.com/ny/api/res/1.2/kwUySU9SFW2HWD8YOnO1lQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM1Mg--/https://media.zenfs.com/en/investorplace_417/6547c6454ca0f10863600fc11f05832d" />
+    </MudBadge>
+    <MudText Align="Align.Center" Typo="Typo.subtitle2" Color="Color.Primary">@UserStorage.Value.User.Name</MudText>
+    <MudText Align="Align.Center" Typo="Typo.caption" Color="Color.Primary">@UserStorage.Value.User.Email</MudText>
+</MudCard>
+@code {
+
+}

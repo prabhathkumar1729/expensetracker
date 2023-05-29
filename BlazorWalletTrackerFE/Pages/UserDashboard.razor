@@ -1,0 +1,635 @@
+﻿@page "/userdashboard"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@using BlazorWalletTrackerFE.Shared.Models;
+@using BlazorWalletTrackerFE.Shared.Services;
+@using BlazorWalletTrackerFE.Store.UserStore;
+@using BlazorWalletTrackerFE.Store.TransactionStore;
+@using BlazorWalletTrackerFE.Store.CategoryStore;
+@inject IDispatcher Dispatcher
+@inject IState<UserState> UserStorage;
+@inject IState<TransactionState> TransactionStorage;
+@inject IState<CategoryState> CategoryStorage;
+@using MudBlazor.Charts;
+@using System.Globalization
+@using System.Collections.Generic;
+@using System.Linq;
+@*<MudDateRangePicker Label="Basic range picker" PickerVariant="PickerVariant.Dialog" @bind-DateRange="_dateRange" MaxDate="DateTime.Now" />
+<MudSelect Label="Category" @bind-Value="selectedCategory" Variant="MudBlazor.Variant.Filled" Style="width: 100%;">
+    @foreach (var category in categories)
+    {
+        <MudSelectItem Value="@category">@category</MudSelectItem>
+    }
+</MudSelect>
+<div class="rz-p-sm-12 rz-text-align-center rz-color-primary-light">
+    <RadzenDropDown @bind-Value=@selectedCategories Data=@categories
+                    Multiple=true AllowClear=true Placeholder="Select categories" Chips=true Style="width: 100%; max-width: 400px; color: orange" />
+</div>*@
+
+
+@*<MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
+    <MudGrid>
+        <MudItem xs="12" sm="6" md="4">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="12" md="4">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6">
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+                </MudItem>
+            </MudGrid>
+        </MudItem>
+        <MudItem xs="12" sm="6">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 100%">
+                <AddTransactionComponent />
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="12" md="4">
+            <MudPaper Elevation="2" Class="pa-4" Style="height: 400px;"><StackedBarGraphDVComponent /></MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="12" md="4">
+            <MudPaper Elevation="2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <RadzenCard class="w-100 mb-4">
+                                <RadzenCheckBox @bind-Value="@showDataLabels" Name="dataLabels"></RadzenCheckBox>
+                                <RadzenLabel Text="Show Data Labels" For="dataLabels" Style="margin-left: 8px; vertical-align: middle;" />
+                            </RadzenCard>
+                            <h4>Auto-size stacked column series</h4>
+                            <RadzenChart>
+                                <RadzenStackedColumnSeries Data="@revenue2020" CategoryProperty="Quarter" Title="2020" LineType="LineType.Dashed" ValueProperty="Revenue">
+                                    <RadzenSeriesDataLabels Visible="@showDataLabels" />
+                                </RadzenStackedColumnSeries>
+                                <RadzenStackedColumnSeries Data="@revenue2019" CategoryProperty="Quarter" Title="2019" ValueProperty="Revenue">
+                                    <RadzenSeriesDataLabels Visible="@showDataLabels" />
+                                </RadzenStackedColumnSeries>
+                                <RadzenColumnOptions Radius="5" />
+                                <RadzenValueAxis Formatter="@FormatAsUSD" Min="0" Max="800000" Step="100000">
+                                    <RadzenGridLines Visible="true" />
+                                    <RadzenAxisTitle Text="Revenue in USD" />
+                                </RadzenValueAxis>
+                            </RadzenChart>
+                            <h4>Custom size stacked column series</h4>
+                            <RadzenChart>
+                                <RadzenStackedColumnSeries Data="@revenue2020" CategoryProperty="Quarter" Title="2020" LineType="LineType.Dashed" ValueProperty="Revenue" />
+                                <RadzenStackedColumnSeries Data="@revenue2019" CategoryProperty="Quarter" Title="2019" ValueProperty="Revenue" />
+                                <RadzenColumnOptions Radius="5" Width="20" />
+                                <RadzenCategoryAxis Padding="20" />
+                                <RadzenValueAxis Formatter="@FormatAsUSD" Min="0" Max="800000" Step="100000">
+                                    <RadzenGridLines Visible="true" />
+                                    <RadzenAxisTitle Text="Revenue in USD" />
+                                </RadzenValueAxis>
+                            </RadzenChart>
+                        </div>
+                    </div>
+                </div>
+
+                @code {
+        bool showDataLabels = false;
+
+        class DataItem
+        {
+            public string Quarter { get; set; }
+            public double Revenue { get; set; }
+        }
+
+        string FormatAsUSD(object value)
+        {
+            return ((double)value).ToString("C0", CultureInfo.CreateSpecificCulture("en-US"));
+        }
+
+        DataItem[] revenue2019 = new DataItem[] {
+                new DataItem
+                {
+                Quarter = "Q1",
+                Revenue = 234000
+                },
+                new DataItem
+                {
+                Quarter = "Q2",
+                Revenue = 284000
+                },
+                new DataItem
+                {
+                Quarter = "Q3",
+                Revenue = 274000
+                },
+                new DataItem
+                {
+                Quarter = "Q4",
+                Revenue = 294000
+                },
+                };
+
+        DataItem[] revenue2020 = new DataItem[] {
+                new DataItem
+                {
+                Quarter = "Q1",
+                Revenue = 254000
+                },
+                new DataItem
+                {
+                Quarter = "Q2",
+                Revenue = 324000
+                },
+                new DataItem
+                {
+                Quarter = "Q3",
+                Revenue = 354000
+                },
+                new DataItem
+                {
+                Quarter = "Q4",
+                Revenue = 394000
+                },
+
+                };
+                }
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</MudContainer>*@
+@*<RadzenChart>
+    <RadzenStackedColumnSeries Data="@revenue2020" CategoryProperty="Quarter" Title="2020" LineType="LineType.Dashed" ValueProperty="Revenue">
+        <RadzenSeriesDataLabels Visible="@showDataLabels" />
+    </RadzenStackedColumnSeries>
+    <RadzenStackedColumnSeries Data="@revenue2019" CategoryProperty="Quarter" Title="2019" ValueProperty="Revenue">
+        <RadzenSeriesDataLabels Visible="@showDataLabels" />
+    </RadzenStackedColumnSeries>
+    <RadzenColumnOptions Radius="5" />
+    <RadzenValueAxis Formatter="@FormatAsUSD" Min="0" Max="800000" Step="100000">
+        <RadzenGridLines Visible="true" />
+        <RadzenAxisTitle Text="Revenue in USD" />
+    </RadzenValueAxis>
+</RadzenChart>*@
+
+@*<StackedBarGraphDVComponent dataItems="@dataItems" />*@
+
+@*<CategoryVsTotalSpendsPieChartComponent categoriesAndSpendings="@categoriesAndSpendings" _dateRange="@_dateRange" />*@
+
+@*<MudContainer Class="remove-container-margin" Fixed="true">
+    <MudGrid Container="Container.Fluid">
+        <MudItem class="userdashboard">*@
+<div class="left-half">
+    <AddTransactionComponent />
+</div>
+<div class="right-half">
+    <div>
+        <MudDateRangePicker Label="Basic range picker" PickerVariant="PickerVariant.Dialog" @bind-DateRange="_dateRange" MaxDate="DateTime.Now" MinDate="DateTime.Now.AddMonths(-11)" />
+        <div class="rz-p-sm-12 rz-text-align-center rz-color-primary-light">
+            <RadzenDropDown @bind-Value=@selectedCategories Data=@categories
+                            Multiple=true AllowClear=true Placeholder="Select categories" Chips=true Style="width: 100%; max-width: 400px; color: orange" />
+        </div>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="RefreshData">Refresh Data</MudButton>
+        <div style="margin:0px">
+        <CategoryVsTotalSpendsPieChartComponent categoriesAndSpendings="@categoriesAndSpendings" _dateRange="@_dateRange" />
+        <CategoryVsTotalNoTransactionsDonutChartComponent categoriesAndNoTransactions="@categoriesAndNoTransactions" _dateRange="_dateRange" />
+        <SpendingsTrendsComponent spendingsStatistics="@spendingsStatistics" />
+        <TransactionsTrendsComponent noOfTransactionsStatistics="@noOfTransactionsStatistics" />
+        <SpendingsStackedColumnChartComponent dataItems="@dataItems" />
+        <TransactionsStackedBarChartComponent dataItems="@dataItems" />
+        </div>  
+        <div>
+            @*<StackedBarGraphDVComponent dataItems="@dataItems" />*@
+        </div>
+
+    </div>
+</div>
+@*        </MudItem>
+    </MudGrid>
+</MudContainer>*@
+@*<div>
+    <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
+        <MudGrid>
+            <MudItem xs="12" sm="6" md="4">
+                <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+                    <CategoryVsTotalSpendsPieChartComponent categoriesAndSpendings="@categoriesAndSpendings" _dateRange="@_dateRange" />
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="6" md="4">
+                <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+                    <CategoryVsTotalNoTransactionsDonutChartComponent categoriesAndNoTransactions="@categoriesAndNoTransactions" _dateRange="_dateRange" />
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="12" md="4">
+                <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudGrid>
+                    <MudItem xs="12">
+                        <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+                            <SpendingsTrendsComponent spendingsStatistics="@spendingsStatistics" />
+                        </MudPaper>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+                            <TransactionsTrendsComponent noOfTransactionsStatistics="@noOfTransactionsStatistics" />
+                        </MudPaper>
+                    </MudItem>
+                </MudGrid>
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudPaper Elevation="2" Class="pa-4" Style="height: 100%"></MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="6" md="4">
+                <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+                    <SpendingsStackedColumnChartComponent dataItems="@dataItems" />
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="6" md="4">
+                <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;">
+                    <TransactionsStackedBarChartComponent dataItems="@dataItems" />
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" sm="12" md="4">
+                <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
+</div>*@
+@code
+{
+
+    private IList<string> selectedCategories = new List<string>();
+    private List<Transaction> transactions;
+    private List<string> categories;
+    private DateTime startDate;
+    private DateTime endDate = DateTime.Now;
+    private string selectedCategory;
+    private DateRange? _dateRange = new DateRange(DateTime.Now.AddDays(-30).Date, DateTime.Now.Date);
+    private TimeSpan? noOfdaysRange;
+    public int numberOfDays;
+    DataItem[] dataItems;
+    CategoryVsTotalSpendings[] categoriesAndSpendings;
+    CategoryVsTotalNoTransactions[] categoriesAndNoTransactions;
+    NoOfTransactionsStatistics[] noOfTransactionsStatistics;
+    SpendingsStatistics[] spendingsStatistics;
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshData();
+    }
+    protected override void OnParametersSet()
+    {
+
+    }
+
+    private async Task RefreshData()
+    {
+        transactions = TransactionStorage.Value.Transactions.Where(x => x.TransactionDate >= _dateRange.Start && x.TransactionDate <= _dateRange.End).ToList();
+        categories = CategoryStorage.Value.CategoryList;
+
+
+        //tempTran = transactions.Select(x=>x.).Where(x => x.TransactionDate >= _dateRange.Start && x.TransactionDate <= _dateRange.End && selectedCategory.Contains(x.Category)).ToList();
+        //.Select(category => category == action.oldCategory ? action.newCategory : category)
+        //var groupedTransactions = transactions
+        //.Where(t => selectedCategories.Contains(t.Category))
+        //.GroupBy(t => new { t.Category, t.TransactionDate?.Month })
+        //.Select(g => new DataItem
+        //    {
+        //        Category = g.Key.Category,
+        //        Month = g.Key.Month,
+        //        TotalSpendingsInTheMonth = g.Sum(t => (double)t.Amount)
+        //    })
+        //.ToList();
+        Console.WriteLine("this is the starting date: ");
+        Console.WriteLine(_dateRange.Start);
+        Console.WriteLine("this is the starting date: ");
+        Console.WriteLine(_dateRange.End);
+        Console.WriteLine("Selected categories are ");
+        foreach (var d in selectedCategories)
+        {
+            Console.WriteLine(d);
+        }
+        Console.WriteLine("Leaving the selected categories");
+        var groupedTransactions = Enumerable.Range(0, ((_dateRange.End?.Year ?? 0) - (_dateRange.Start?.Year ?? 0)) * 12 + ((_dateRange.End?.Month ?? 0) - (_dateRange.Start?.Month ?? 0)) + 1)
+            .Select(offset => (_dateRange.Start?.AddMonths(offset)).GetValueOrDefault())
+            .SelectMany(date => selectedCategories.Select(category => new { Category = category, Month = date.ToString("MMM") }))
+            .GroupJoin(
+                transactions.Where(t => selectedCategories.Contains(t.Category) && t.TransactionDate >= _dateRange.Start && t.TransactionDate <= _dateRange.End),
+                keySelector => new { keySelector.Category, keySelector.Month },
+                elementSelector => new { elementSelector.Category, Month = elementSelector.TransactionDate?.ToString("MMM") },
+                (key, elements) => new DataItem
+                    {
+                        Category = key.Category,
+                        Month = key.Month,
+                        TotalSpendingsInTheMonth = elements.Sum(t => (double)t.Amount),
+                        TotalNumberOfTransactionsInTheMonth = elements.Count()
+                    })
+            .ToList();
+
+        Console.WriteLine("I am in group transactions");
+        foreach (var d in groupedTransactions)
+        {
+            Console.WriteLine(d.Category);
+            Console.WriteLine(d.Month);
+            Console.WriteLine(d.TotalSpendingsInTheMonth);
+            Console.WriteLine(d.TotalNumberOfTransactionsInTheMonth);
+        }
+        Console.WriteLine("I am leaving groupedtransactions");
+
+
+        // Calculate remaining spendings for transactions not in the selected list
+        //var remainingTransactions = transactions
+        //    .Where(t => !selectedCategories.Contains(t.Category))
+        //    .GroupBy(t => t.TransactionDate?.ToString("MMM"))
+        //    .Select(g => new DataItem
+        //        {
+        //            Category = "Remaining",
+        //            Month = g.Key,
+        //            TotalSpendingsInTheMonth = g.Sum(t => (double)t.Amount),
+        //            TotalNumberOfTransactionsInTheMonth = g.Count()
+        //        })
+        //    .ToList();
+
+        //    DateTime? startDate = _dateRange.Start;
+        //    DateTime? endDate = _dateRange.End;
+
+        //    var remainingTransactions = transactions
+        //.Where(t => !selectedCategories.Contains(t.Category))
+        //.GroupBy(t => t.TransactionDate?.ToString("MMM"))
+        //.Select(g => new DataItem
+        //    {
+        //        Category = "Remaining",
+        //        Month = g.Key,
+        //        TotalSpendingsInTheMonth = g.Sum(t => (double)t.Amount),
+        //        TotalNumberOfTransactionsInTheMonth = g.Count()
+        //    })
+        //.ToList();
+
+        var remainingTransactions = Enumerable.Range(0, ((_dateRange.End?.Year ?? 0) - (_dateRange.Start?.Year ?? 0)) * 12 + ((_dateRange.End?.Month ?? 0) - (_dateRange.Start?.Month ?? 0)) + 1)
+        .Select(offset => (_dateRange.Start?.AddMonths(offset)).GetValueOrDefault())
+        .Select(month =>
+        {
+            var monthTransactions = transactions
+                .Where(t => t.TransactionDate?.Month == month.Month && !selectedCategories.Contains(t.Category))
+                .ToList();
+
+            var totalSpendings = monthTransactions.Sum(t => t.Amount);
+            var totalNumberOfTransactions = monthTransactions.Count;
+
+            return new DataItem
+                {
+                    Category = "Remaining",
+                    Month = month.ToString("MMM"),
+                    TotalSpendingsInTheMonth = (double)totalSpendings,
+                    TotalNumberOfTransactionsInTheMonth = totalNumberOfTransactions
+                };
+        })
+        .ToList();
+
+
+        Console.WriteLine("I am in Remaining transactions");
+        foreach (var d in remainingTransactions)
+        {
+            Console.WriteLine(d.Category);
+            Console.WriteLine(d.Month);
+            Console.WriteLine(d.TotalSpendingsInTheMonth);
+            Console.WriteLine(d.TotalNumberOfTransactionsInTheMonth);
+        }
+        Console.WriteLine("I am leaving Remaining transactions");
+
+        // Combine the grouped transactions and remaining spendings
+        groupedTransactions.AddRange(remainingTransactions);
+
+        // Convert the combined result to DataItem[]
+        dataItems = groupedTransactions.ToArray();
+
+
+        Console.WriteLine("I am starting the dataItems");
+        foreach (var d in dataItems)
+        {
+            Console.WriteLine(d.Category);
+            Console.WriteLine(d.Month);
+            Console.WriteLine(d.TotalSpendingsInTheMonth);
+            Console.WriteLine(d.TotalNumberOfTransactionsInTheMonth);
+        }
+        Console.WriteLine("I am ending the dataItems");
+
+        categoriesAndSpendings = dataItems
+       .GroupBy(t => t.Category)
+       .Select(g => new CategoryVsTotalSpendings
+           {
+               Category = g.Key,
+               TotalSpendings = g.Sum(t => t.TotalSpendingsInTheMonth)
+           })
+       .ToArray();
+
+        Console.WriteLine("I have crossed categoriesAndSpendings");
+        categoriesAndNoTransactions = dataItems
+        .GroupBy(t => t.Category)
+       .Select(g => new CategoryVsTotalNoTransactions
+           {
+               Category = g.Key,
+               TotalNumberOfTransactions = g.Sum(t => t.TotalNumberOfTransactionsInTheMonth)
+           })
+        .ToArray();
+
+Console.WriteLine("I have crossed categoriesAndNoTransactions");
+
+        spendingsStatistics = dataItems
+        //.Where(t => selectedCategories.Contains(t.Category))
+        .GroupBy(t => t.Month)
+        .Select(g => new SpendingsStatistics
+            {
+                Month = g.Key,
+                TotalSpendingsInTheMonth = g.Sum(t => t.TotalSpendingsInTheMonth)
+            })
+        .ToArray();
+
+        Console.WriteLine("I have crossed spendingsStatistics");
+
+        noOfTransactionsStatistics = dataItems
+        //.Where(t => selectedCategories.Contains(t.Category))
+        .GroupBy(t => t.Month)
+        .Select(g => new NoOfTransactionsStatistics
+            {
+                Month = g.Key,
+                TotalNumberOfTransactionsInTheMonth = g.Sum(t => t.TotalNumberOfTransactionsInTheMonth)
+            })
+        .ToArray();
+
+        Console.WriteLine("I have crossed noOfTransactionsStatistics");
+
+        //Console.WriteLine("This is the spendings statistics");
+        //foreach (var d in spendingsStatistics)
+        //{
+        //    Console.WriteLine(d.Month);
+        //    Console.WriteLine(d.TotalSpendingsInTheMonth);
+        //}
+        //Console.WriteLine("This is the end of spendings statistics");
+
+        //Console.WriteLine("This is the no of transactions statistics");
+        //foreach (var d in noOfTransactionsStatistics)
+        //{
+        //    Console.WriteLine(d.Month);
+        //    Console.WriteLine(d.TotalNumberOfTransactionsInTheMonth);
+        //}
+        //Console.WriteLine("This is the end of transactions statistics");
+
+
+        //Console.WriteLine("This is the category in array:   ", dataItems[0].Category);
+        //Console.WriteLine("This is the total spendings of that category:   ", dataItems[0].TotalSpendingsInTheMonth);
+        //Console.WriteLine("This is the size of array:   ", categoriesAndSpendings.Length);
+    }
+
+
+    private List<Transaction> tempTran { get; set; }
+    //Console.WriteLine(_dateRange.)
+
+
+
+
+}
+@*
+@code
+{
+    private IList<string> selectedCategories = new List<string>();
+    private List<Transaction> transactions;
+    private List<string> categories;
+    private DateTime startDate;
+    private DateTime endDate = DateTime.Now;
+    private string selectedCategory;
+    private DateRange? _dateRange = new DateRange(DateTime.Now.AddDays(-30).Date, DateTime.Now.Date);
+    private TimeSpan? noOfdaysRange;
+    public int numberOfDays;
+    DataItem[] dataItems = new DataItem[0];
+    CategoryVsTotalSpendings[] categoriesAndSpendings = new CategoryVsTotalSpendings[0];
+    CategoryVsTotalNoTransactions[] categoriesAndNoTransactions = new CategoryVsTotalNoTransactions[0];
+    NoOfTransactionsStatistics[] noOfTransactionsStatistics = new NoOfTransactionsStatistics[0];
+    SpendingsStatistics[] spendingsStatistics = new SpendingsStatistics[0];
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshData();
+    }
+
+    private async Task RefreshData()
+    {
+        transactions = TransactionStorage.Value.Transactions.Where(x => x.TransactionDate >= _dateRange.Start && x.TransactionDate <= _dateRange.End).ToList();
+        categories = CategoryStorage.Value.CategoryList;
+
+        var groupedTransactions = Enumerable.Range(0, ((_dateRange.End?.Year ?? 0) - (_dateRange.Start?.Year ?? 0)) * 12 + ((_dateRange.End?.Month ?? 0) - (_dateRange.Start?.Month ?? 0)) + 1)
+            .Select(offset => (_dateRange.Start?.AddMonths(offset)).GetValueOrDefault())
+            .SelectMany(date => selectedCategories.Select(category => new { Category = category, Month = date.ToString("MMM") }))
+            .GroupJoin(
+                transactions.Where(t => selectedCategories.Contains(t.Category) && t.TransactionDate >= _dateRange.Start && t.TransactionDate <= _dateRange.End),
+                keySelector => new { keySelector.Category, keySelector.Month },
+                elementSelector => new { elementSelector.Category, Month = elementSelector.TransactionDate?.ToString("MMM") },
+                (key, elements) => new DataItem
+                    {
+                        Category = key.Category,
+                        Month = key.Month,
+                        TotalSpendingsInTheMonth = elements.Sum(t => (double)t.Amount),
+                        TotalNumberOfTransactionsInTheMonth = elements.Count()
+                    })
+            .ToList();
+
+        // Calculate remaining spendings for transactions not in the selected list
+        var remainingTransactions = transactions
+    .Where(t => !selectedCategories.Contains(t.Category))
+    .GroupBy(t => t.TransactionDate?.ToString("MMM"))
+    .Select(g => new DataItem
+        {
+            Category = "Remaining",
+            Month = g.Key,
+            TotalSpendingsInTheMonth = g.Sum(t => (double)t.Amount),
+            TotalNumberOfTransactionsInTheMonth = g.Count()
+        })
+    .ToList();
+
+        //Combine the grouped transactions and remaining spendings
+        groupedTransactions.AddRange(remainingTransactions);
+
+        //Convert the combined result to DataItem[]
+        dataItems = groupedTransactions.ToArray();
+
+        Console.WriteLine("Selected categories are ");
+        foreach (var d in selectedCategories)
+        {
+            Console.WriteLine(d);
+        }
+
+        Console.WriteLine(_dateRange.Start);
+        foreach (var d in dataItems)
+        {
+            Console.WriteLine("Helllllllllllloooo world started");
+            Console.WriteLine(d.Category);
+            Console.WriteLine(d.Month);
+            Console.WriteLine(d.TotalSpendingsInTheMonth);
+            Console.WriteLine(d.TotalNumberOfTransactionsInTheMonth);
+            Console.WriteLine("Hello world ended");
+        }
+
+        Console.WriteLine(_dateRange.End);
+        categoriesAndSpendings = dataItems
+            .GroupBy(t => t.Category)
+            .Select(g => new CategoryVsTotalSpendings
+                {
+                    Category = g.Key,
+                    TotalSpendings = g.Sum(t => t.TotalSpendingsInTheMonth)
+                })
+            .ToArray();
+
+        categoriesAndNoTransactions = dataItems
+            .GroupBy(t => t.Category)
+            .Select(g => new CategoryVsTotalNoTransactions
+                {
+                    Category = g.Key,
+                    TotalNumberOfTransactions = g.Sum(t => t.TotalNumberOfTransactionsInTheMonth)
+                })
+            .ToArray();
+
+        spendingsStatistics = dataItems
+        .GroupBy(t => t.Month)
+        .Select(g => new SpendingsStatistics
+            {
+                Month = g.Key,
+                TotalSpendingsInTheMonth = g.Sum(t => t.TotalSpendingsInTheMonth)
+            })
+        .ToArray();
+
+        Console.WriteLine("This is the spendings statistics");
+        foreach (var d in spendingsStatistics)
+        {
+            Console.WriteLine(d.Month);
+            Console.WriteLine(d.TotalSpendingsInTheMonth);
+        }
+        Console.WriteLine("This is the end of spendings statistics");
+
+
+
+
+        noOfTransactionsStatistics = dataItems
+        .GroupBy(t => t.Month)
+                .Select(g => new NoOfTransactionsStatistics
+                    {
+                        Month = g.Key,
+                        TotalNumberOfTransactionsInTheMonth = g.Sum(t => t.TotalNumberOfTransactionsInTheMonth)
+                    })
+                .ToArray();
+
+        Console.WriteLine("This is the no of transactions statistics");
+        foreach (var d in noOfTransactionsStatistics)
+        {
+            Console.WriteLine(d.Month);
+            Console.WriteLine(d.TotalNumberOfTransactionsInTheMonth);
+        }
+    }
+}
+*@
